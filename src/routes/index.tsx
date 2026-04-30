@@ -422,8 +422,34 @@ function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {PRODUCTS.map((p) => (
+        {/* Category Tabs */}
+        <div data-reveal className="mb-12 flex flex-wrap items-center justify-center gap-3">
+          {TABS.map((t) => {
+            const isActive = category === t.key;
+            const count = PRODUCTS.filter((p) => p.category === t.key).length;
+            return (
+              <button
+                key={t.key}
+                onClick={() => setCategory(t.key)}
+                className={`group relative rounded-full border px-7 py-3 text-xs font-semibold uppercase tracking-[0.3em] transition-all ${
+                  isActive
+                    ? "border-gold bg-gold text-accent-foreground shadow-gold"
+                    : "border-border/60 text-muted-foreground hover:border-gold/60 hover:text-foreground"
+                }`}
+              >
+                {t.label}
+                <span
+                  className={`ml-3 text-[9px] ${isActive ? "text-accent-foreground/70" : "text-muted-foreground/70"}`}
+                >
+                  {String(count).padStart(2, "0")}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div key={category} className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 animate-fade-in">
+          {visibleProducts.map((p) => (
             <TiltCard key={p.id} className="group cursor-pointer">
               <button
                 onClick={() => setActive(p)}
