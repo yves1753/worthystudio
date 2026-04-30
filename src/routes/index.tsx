@@ -19,10 +19,15 @@ import cap2 from "@/assets/product-cap2.jpg";
 import capGlobeRed from "@/assets/product-cap-globe-red.jpg";
 import capGlobeBrown from "@/assets/product-cap-globe-brown.jpg";
 import capGlobeCollection from "@/assets/product-cap-globe-collection.jpg";
+import capTeal from "@/assets/product-cap-teal.jpg";
+import capBlackGold from "@/assets/product-cap-black-gold.jpg";
+import capCreamBrown from "@/assets/product-cap-cream-brown.jpg";
 import phoneCase from "@/assets/product-case.jpg";
 import caseOldMoney from "@/assets/product-case-oldmoney.jpg";
 import caseBelleAme from "@/assets/product-case-belleame.jpg";
 import caseSmiley from "@/assets/product-case-smiley.jpg";
+import caseFloral from "@/assets/product-case-floral.jpg";
+import caseEspresso from "@/assets/product-case-espresso.jpg";
 import hoodie from "@/assets/product-hoodie.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
 
@@ -206,6 +211,51 @@ const PRODUCTS: Product[] = [
     image: caseSmiley,
     description:
       "Clean white case with a smiley and the mantra: whatever happens next… happens next.",
+  },
+  {
+    id: "teal-wave-cap",
+    name: "Wave Cap — Teal Brim",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capTeal,
+    description:
+      "Cream crown with deep teal brim. Embroidered wave mark and gold WORTHYSTUDIOS script.",
+  },
+  {
+    id: "black-gold-wave-cap",
+    name: "Wave Cap — Black & Gold",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capBlackGold,
+    description:
+      "All-black cap with tonal wave embroidery and gold WORTHYSTUDIOS lettering.",
+  },
+  {
+    id: "cream-brown-wave-cap",
+    name: "Wave Cap — Cream & Brown",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capCreamBrown,
+    description:
+      "Cream crown with espresso brown brim. Brown wave embroidery and gold script.",
+  },
+  {
+    id: "floral-case",
+    name: "Wildflower Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseFloral,
+    description:
+      "Cream case dressed in a vintage wildflower print. Soft, romantic, statement.",
+  },
+  {
+    id: "espresso-martini-case",
+    name: "Espresso Martini Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseEspresso,
+    description:
+      "Minimal white case with hand-drawn espresso martinis, hearts and florals.",
   },
 ];
 
