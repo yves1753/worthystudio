@@ -264,6 +264,13 @@ const WHATSAPP = (msg: string) =>
 
 function Home() {
   const [active, setActive] = useState<Product | null>(null);
+  const [category, setCategory] = useState<"T-Shirts" | "Caps" | "Accessories">("T-Shirts");
+  const visibleProducts = PRODUCTS.filter((p) => p.category === category);
+  const TABS: Array<{ key: "T-Shirts" | "Caps" | "Accessories"; label: string }> = [
+    { key: "T-Shirts", label: "T-Shirts" },
+    { key: "Caps", label: "Caps" },
+    { key: "Accessories", label: "Accessories" },
+  ];
   const heroTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
