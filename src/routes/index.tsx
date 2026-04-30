@@ -1,26 +1,422 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HeroScene } from "@/components/HeroScene";
+import { Nav } from "@/components/Nav";
+import { Loader } from "@/components/Loader";
+import { TiltCard } from "@/components/TiltCard";
+import logo from "@/assets/worthy-logo.jpg";
+import tee from "@/assets/product-tee.jpg";
+import cap from "@/assets/product-cap.jpg";
+import phoneCase from "@/assets/product-case.jpg";
+import hoodie from "@/assets/product-hoodie.jpg";
+import aboutBg from "@/assets/about-bg.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Worthy Studios — Wear Your Worth | Streetwear from Dar es Salaam" },
+      {
+        name: "description",
+        content:
+          "Worthy Studios is a premium streetwear brand from Dar es Salaam, Tanzania. Tees, caps, and accessories crafted for identity, culture, and self-worth.",
+      },
+      { property: "og:title", content: "Worthy Studios — Wear Your Worth" },
+      { property: "og:description", content: "Premium streetwear from Dar es Salaam." },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+type Product = {
+  id: string;
+  name: string;
+  category: "T-Shirts" | "Caps" | "Accessories";
+  price: string;
+  image: string;
+  description: string;
+};
+
+const PRODUCTS: Product[] = [
+  {
+    id: "signature-tee",
+    name: "Signature Black Tee",
+    category: "T-Shirts",
+    price: "TZS 45,000",
+    image: tee,
+    description:
+      "Heavyweight 240gsm cotton tee with a minimalist embroidered W. Cut for everyday confidence.",
+  },
+  {
+    id: "rose-hoodie",
+    name: "Rose W Hoodie",
+    category: "T-Shirts",
+    price: "TZS 95,000",
+    image: hoodie,
+    description:
+      "Oversized cream hoodie featuring the signature rose monogram. Brushed fleece interior.",
+  },
+  {
+    id: "gold-cap",
+    name: "Gold Monogram Cap",
+    category: "Caps",
+    price: "TZS 38,000",
+    image: cap,
+    description:
+      "6-panel structured cap with hand-finished gold embroidery on premium twill.",
+  },
+  {
+    id: "monogram-case",
+    name: "Monogram Phone Case",
+    category: "Accessories",
+    price: "TZS 28,000",
+    image: phoneCase,
+    description:
+      "Soft-touch matte case with the gold W mark. Drop-tested. Available for major models.",
+  },
+];
+
+const WHATSAPP = (msg: string) =>
+  `https://wa.me/255788626375?text=${encodeURIComponent(msg)}`;
+
+function Home() {
+  const [active, setActive] = useState<Product | null>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero text reveal
+      gsap.from(".hero-line", {
+        yPercent: 110,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out",
+        stagger: 0.12,
+        delay: 1.6,
+      });
+      gsap.from(".hero-sub", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 2.6,
+        ease: "power2.out",
+      });
+
+      // Scroll word reveals
+      gsap.utils.toArray<HTMLElement>(".pillar-word").forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 80,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 85%" },
+        });
+      });
+
+      // Section headings
+      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 40,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%" },
+        });
+      });
+
+      // Parallax on about bg
+      gsap.to(".about-parallax", {
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative min-h-screen bg-background text-foreground">
+      <Loader />
+      <Nav />
+
+      {/* HERO */}
+      <section
+        id="home"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden grain"
+      >
+        <HeroScene />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 0%, oklch(0.13 0 0 / 0.6) 60%, oklch(0.08 0 0) 100%)",
+          }}
+        />
+
+        <div ref={heroTextRef} className="relative z-10 px-6 text-center">
+          <p className="hero-sub mb-6 text-[0.7rem] uppercase tracking-[0.5em] text-gold">
+            Crafted in Dar es Salaam
+          </p>
+          <h1 className="font-display text-[clamp(3.5rem,12vw,11rem)] leading-[0.85]">
+            <span className="block overflow-hidden">
+              <span className="hero-line block shimmer-text">WORTHY</span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="hero-line block">STUDIOS</span>
+            </span>
+          </h1>
+          <p className="hero-sub mx-auto mt-8 max-w-md text-sm uppercase tracking-[0.35em] text-muted-foreground">
+            Wear Your Worth
+          </p>
+          <a
+            href="#shop"
+            className="hero-sub mt-12 inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-xs font-bold uppercase tracking-[0.3em] text-background transition-transform hover:scale-105"
+          >
+            Explore Collection
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+
+        {/* scroll cue */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-muted-foreground float-y">
+          Scroll
+        </div>
+      </section>
+
+      {/* MARQUEE */}
+      <section className="border-y border-border/50 py-6 overflow-hidden">
+        <div className="marquee text-3xl md:text-5xl font-display uppercase tracking-tight">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div key={i} className="flex items-center gap-16 pr-16">
+              <span>Identity</span>
+              <span className="text-gold">✦</span>
+              <span>Culture</span>
+              <span className="text-gold">✦</span>
+              <span>Confidence</span>
+              <span className="text-gold">✦</span>
+              <span>Worth</span>
+              <span className="text-gold">✦</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PILLARS */}
+      <section className="mx-auto max-w-6xl px-6 py-32 text-center">
+        <p data-reveal className="mb-6 text-[0.7rem] uppercase tracking-[0.5em] text-gold">
+          The Worthy Code
+        </p>
+        <div className="space-y-4">
+          {["Identity.", "Culture.", "Confidence."].map((w) => (
+            <h2
+              key={w}
+              className="pillar-word font-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9]"
+            >
+              {w}
+            </h2>
+          ))}
+        </div>
+      </section>
+
+      {/* SHOP */}
+      <section id="shop" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p data-reveal className="mb-3 text-[0.7rem] uppercase tracking-[0.5em] text-gold">
+              The Collection
+            </p>
+            <h2 data-reveal className="font-display text-5xl md:text-7xl">Shop</h2>
+          </div>
+          <p data-reveal className="max-w-sm text-sm text-muted-foreground">
+            Limited drops. Premium materials. Pieces that speak before you do.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {PRODUCTS.map((p) => (
+            <TiltCard key={p.id} className="group cursor-pointer">
+              <button
+                onClick={() => setActive(p)}
+                className="block w-full text-left"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-card">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={768}
+                    height={960}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                  <span className="absolute left-4 top-4 rounded-full bg-background/60 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur">
+                    {p.category}
+                  </span>
+                </div>
+                <div className="mt-5 flex items-start justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold">{p.name}</h3>
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                      View
+                    </p>
+                  </div>
+                  <p className="text-sm text-gold">{p.price}</p>
+                </div>
+              </button>
+            </TiltCard>
+          ))}
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section
+        id="about"
+        className="relative overflow-hidden py-40"
+      >
+        <div
+          className="about-parallax absolute inset-0 -z-10 opacity-25"
+          style={{
+            backgroundImage: `url(${aboutBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/70 to-background" />
+
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p data-reveal className="mb-6 text-[0.7rem] uppercase tracking-[0.5em] text-gold">
+            Our Story
+          </p>
+          <h2
+            data-reveal
+            className="font-display text-4xl leading-tight md:text-6xl"
+          >
+            Worthy Studios is more than clothing.{" "}
+            <span className="gradient-gold-text">It is a statement.</span>
+          </h2>
+          <p
+            data-reveal
+            className="mx-auto mt-10 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            Born in Dar es Salaam, we craft pieces that carry identity, culture,
+            and self-worth. Each drop is a conversation between heritage and the
+            future of African streetwear.
+          </p>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="mx-auto max-w-5xl px-6 py-32 text-center">
+        <p data-reveal className="mb-6 text-[0.7rem] uppercase tracking-[0.5em] text-gold">
+          Get in Touch
+        </p>
+        <h2 data-reveal className="font-display text-5xl md:text-7xl leading-none">
+          Order Direct.
+        </h2>
+        <p data-reveal className="mx-auto mt-6 max-w-md text-muted-foreground">
+          Slide into our WhatsApp to place an order, request a custom piece, or
+          ask anything about a drop.
+        </p>
+
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href={WHATSAPP("Hello Worthy Studios, I want to place an order.")}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-accent-foreground transition-transform hover:scale-105 shadow-gold"
+          >
+            Order on WhatsApp
+          </a>
+          <a
+            href="https://instagram.com/worthystudios.tz"
+            target="_blank"
+            rel="noreferrer"
+            className="glass rounded-full px-10 py-5 text-sm font-semibold uppercase tracking-[0.3em] transition-colors hover:text-gold"
+          >
+            @worthystudios.tz
+          </a>
+        </div>
+
+        <div className="mt-16 grid gap-8 text-sm text-muted-foreground sm:grid-cols-3">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Phone</p>
+            <p className="mt-2">0788 626 375</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Studio</p>
+            <p className="mt-2">Dar es Salaam, Tanzania</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Hours</p>
+            <p className="mt-2">Mon — Sat · 09:00 – 19:00</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-border/50 py-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="" className="h-8 w-8 rounded object-cover" />
+            <span className="text-xs uppercase tracking-[0.3em]">Worthy Studios</span>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Worthy Studios. Wear Your Worth.
+          </p>
+        </div>
+      </footer>
+
+      {/* PRODUCT MODAL */}
+      {active && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/80 p-4 backdrop-blur-md"
+          onClick={() => setActive(null)}
+        >
+          <div
+            className="glass relative grid max-h-[90vh] w-full max-w-5xl grid-cols-1 overflow-hidden rounded-3xl shadow-deep md:grid-cols-2"
+            onClick={(e) => e.stopPropagation()}
+            style={{ animation: "scale-in 0.4s ease-out" }}
+          >
+            <button
+              onClick={() => setActive(null)}
+              className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-background/60 text-lg backdrop-blur hover:bg-background"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <div className="aspect-square md:aspect-auto">
+              <img
+                src={active.image}
+                alt={active.name}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center gap-6 p-8 md:p-12">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">
+                {active.category}
+              </p>
+              <h3 className="font-display text-4xl leading-tight">{active.name}</h3>
+              <p className="text-2xl text-gold">{active.price}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {active.description}
+              </p>
+              <a
+                href={WHATSAPP(
+                  `Hello Worthy Studios, I want to order: ${active.name} (${active.price}).`
+                )}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.3em] text-accent-foreground transition-transform hover:scale-[1.02] shadow-gold"
+              >
+                Order on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
