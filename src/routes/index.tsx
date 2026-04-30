@@ -117,6 +117,96 @@ const PRODUCTS: Product[] = [
     description:
       "Soft-touch matte case with the gold W mark. Drop-tested. Available for major models.",
   },
+  {
+    id: "bad-habit-tee",
+    name: "Bad Like A Habit Tee",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: teeBadHabit,
+    description:
+      "Black tee with playful pink graphic print — strawberry, camera, bow & love notes. From the Femme line.",
+  },
+  {
+    id: "new-breed-tee",
+    name: "New Breed Tee",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: teeNewBreed,
+    description:
+      "Black tee repping the global cities — Dar es Salaam, Seoul, Melbourne, London, New York.",
+  },
+  {
+    id: "pink-255-tee",
+    name: "Worthystudios 255 Jersey",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: teePink255,
+    description:
+      "Soft pink jersey-style tee with crest and cursive Worthystudios script. 255 edition.",
+  },
+  {
+    id: "fortitudine-tee",
+    name: "Fortitudine Vincimus Tee",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: teeFortitudine,
+    description:
+      "Cream textured tee with deep burgundy crest and cursive Worthystudios script. By endurance, we conquer.",
+  },
+  {
+    id: "globe-cap-red",
+    name: "Globe Cap — Red Brim",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capGlobeRed,
+    description:
+      "Two-tone suede cap with embroidered globe-in-hand mark. Black crown, red brim.",
+  },
+  {
+    id: "globe-cap-brown",
+    name: "Globe Cap — Brown Suede",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capGlobeBrown,
+    description:
+      "Brown suede dad cap with white embroidered globe and WORTHYSTUDIOS script.",
+  },
+  {
+    id: "globe-cap-collection",
+    name: "Globe Cap — Burgundy Edition",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capGlobeCollection,
+    description:
+      "Limited burgundy & black colorway from the Globe collection. Embroidered crest.",
+  },
+  {
+    id: "old-money-case",
+    name: "Old Money Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseOldMoney,
+    description:
+      "Forest green case with Recreation Club crest. Refined, sporty, timeless.",
+  },
+  {
+    id: "belle-ame-case",
+    name: "Belle Âme Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseBelleAme,
+    description:
+      "Black checkered case with cherry graphic and Belle Âme typography.",
+  },
+  {
+    id: "smiley-case",
+    name: "Whatever Happens Next Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseSmiley,
+    description:
+      "Clean white case with a smiley and the mantra: whatever happens next… happens next.",
+  },
 ];
 
 const WHATSAPP = (msg: string) =>
