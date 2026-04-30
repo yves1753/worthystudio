@@ -19,10 +19,15 @@ import cap2 from "@/assets/product-cap2.jpg";
 import capGlobeRed from "@/assets/product-cap-globe-red.jpg";
 import capGlobeBrown from "@/assets/product-cap-globe-brown.jpg";
 import capGlobeCollection from "@/assets/product-cap-globe-collection.jpg";
+import capTeal from "@/assets/product-cap-teal.jpg";
+import capBlackGold from "@/assets/product-cap-black-gold.jpg";
+import capCreamBrown from "@/assets/product-cap-cream-brown.jpg";
 import phoneCase from "@/assets/product-case.jpg";
 import caseOldMoney from "@/assets/product-case-oldmoney.jpg";
 import caseBelleAme from "@/assets/product-case-belleame.jpg";
 import caseSmiley from "@/assets/product-case-smiley.jpg";
+import caseFloral from "@/assets/product-case-floral.jpg";
+import caseEspresso from "@/assets/product-case-espresso.jpg";
 import hoodie from "@/assets/product-hoodie.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
 
