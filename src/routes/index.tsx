@@ -8,7 +8,10 @@ import { Loader } from "@/components/Loader";
 import { TiltCard } from "@/components/TiltCard";
 import logo from "@/assets/worthy-logo.jpg";
 import tee from "@/assets/product-tee.jpg";
+import tee2 from "@/assets/product-tee2.jpg";
+import tee3 from "@/assets/product-tee3.jpg";
 import cap from "@/assets/product-cap.jpg";
+import cap2 from "@/assets/product-cap2.jpg";
 import phoneCase from "@/assets/product-case.jpg";
 import hoodie from "@/assets/product-hoodie.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
@@ -42,37 +45,64 @@ type Product = {
 
 const PRODUCTS: Product[] = [
   {
-    id: "signature-tee",
-    name: "Signature Black Tee",
+    id: "worthy-red-tee",
+    name: "Worthy Red Tee",
     category: "T-Shirts",
-    price: "TZS 45,000",
+    price: "TZS 30,000",
     image: tee,
     description:
-      "Heavyweight 240gsm cotton tee with a minimalist embroidered W. Cut for everyday confidence.",
+      "Bold red statement tee with the iconic WORTHY block print. Heavyweight cotton, oversized fit.",
   },
   {
-    id: "rose-hoodie",
-    name: "Rose W Hoodie",
+    id: "stay-weird-tee",
+    name: "Stay Weird Tee",
     category: "T-Shirts",
-    price: "TZS 95,000",
+    price: "TZS 30,000",
     image: hoodie,
     description:
-      "Oversized cream hoodie featuring the signature rose monogram. Brushed fleece interior.",
+      "Olive long-sleeve from the Stay Weird drop. For the kulture — premium combed cotton.",
   },
   {
-    id: "gold-cap",
-    name: "Gold Monogram Cap",
+    id: "worthy-cream-tee",
+    name: "Worthy Cream Tee",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: tee2,
+    description:
+      "Soft cream tee with the signature worthy. wordmark. Minimal, everyday luxury.",
+  },
+  {
+    id: "worthy-block-tee",
+    name: "Worthy Block Tee",
+    category: "T-Shirts",
+    price: "TZS 30,000",
+    image: tee3,
+    description:
+      "Black tee with bold blue WORTHY side print. Tanzanian luxury, creative dept.",
+  },
+  {
+    id: "wave-cap",
+    name: "Wave Studios Cap",
     category: "Caps",
-    price: "TZS 38,000",
+    price: "TZS 40,000",
     image: cap,
     description:
-      "6-panel structured cap with hand-finished gold embroidery on premium twill.",
+      "Two-tone cream and navy cap with embroidered wave mark and WORTHYSTUDIOS script.",
+  },
+  {
+    id: "unleashed-cap",
+    name: "Unleashed Cap",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: cap2,
+    description:
+      "Forest green dad cap with hand-stitched Unleashed embroidery in gold.",
   },
   {
     id: "monogram-case",
     name: "Monogram Phone Case",
     category: "Accessories",
-    price: "TZS 28,000",
+    price: "TZS 25,000",
     image: phoneCase,
     description:
       "Soft-touch matte case with the gold W mark. Drop-tested. Available for major models.",
