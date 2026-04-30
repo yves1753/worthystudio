@@ -212,6 +212,51 @@ const PRODUCTS: Product[] = [
     description:
       "Clean white case with a smiley and the mantra: whatever happens next… happens next.",
   },
+  {
+    id: "teal-wave-cap",
+    name: "Wave Cap — Teal Brim",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capTeal,
+    description:
+      "Cream crown with deep teal brim. Embroidered wave mark and gold WORTHYSTUDIOS script.",
+  },
+  {
+    id: "black-gold-wave-cap",
+    name: "Wave Cap — Black & Gold",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capBlackGold,
+    description:
+      "All-black cap with tonal wave embroidery and gold WORTHYSTUDIOS lettering.",
+  },
+  {
+    id: "cream-brown-wave-cap",
+    name: "Wave Cap — Cream & Brown",
+    category: "Caps",
+    price: "TZS 40,000",
+    image: capCreamBrown,
+    description:
+      "Cream crown with espresso brown brim. Brown wave embroidery and gold script.",
+  },
+  {
+    id: "floral-case",
+    name: "Wildflower Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseFloral,
+    description:
+      "Cream case dressed in a vintage wildflower print. Soft, romantic, statement.",
+  },
+  {
+    id: "espresso-martini-case",
+    name: "Espresso Martini Phone Case",
+    category: "Accessories",
+    price: "TZS 25,000",
+    image: caseEspresso,
+    description:
+      "Minimal white case with hand-drawn espresso martinis, hearts and florals.",
+  },
 ];
 
 const WHATSAPP = (msg: string) =>
