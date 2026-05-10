@@ -61,6 +61,9 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
+    // Static Netlify deploy has no SSR / window.$_TSR bootstrap. Default SSR behavior
+    // assumes a hydrated server shell and can throw production "Invariant failed" in load.
+    defaultSsr: false,
   });
 
   return router;
