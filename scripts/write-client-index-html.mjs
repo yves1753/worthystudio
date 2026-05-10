@@ -42,9 +42,8 @@ function main() {
   }
 
   const entry = findEntryChunk(indexFiles);
-  const styleFiles = fs
-    .readdirSync(assetsDir)
-    .filter((f) => f.startsWith("styles-") && f.endsWith(".css"));
+  // Vite may emit `styles-*.css` or `index-*.css` depending on the graph; link every CSS asset.
+  const styleFiles = fs.readdirSync(assetsDir).filter((f) => f.endsWith(".css"));
 
   const linkTags = styleFiles
     .map((f) => `    <link rel="stylesheet" href="/assets/${f}" />`)
@@ -63,6 +62,12 @@ function main() {
     <meta property="og:title" content="Worthy Studios — Wear Your Worth" />
     <meta property="og:description" content="Premium streetwear from Dar es Salaam." />
     <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 ${linkTags ? `${linkTags}\n` : ""}  </head>
   <body>
     <div id="root"></div>
