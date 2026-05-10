@@ -55,7 +55,14 @@ function main() {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Worthy Studios</title>
+    <title>Worthy Studios — Wear Your Worth | Streetwear from Dar es Salaam</title>
+    <meta
+      name="description"
+      content="Worthy Studios is a premium streetwear brand from Dar es Salaam, Tanzania. Tees, caps, and accessories crafted for identity, culture, and self-worth."
+    />
+    <meta property="og:title" content="Worthy Studios — Wear Your Worth" />
+    <meta property="og:description" content="Premium streetwear from Dar es Salaam." />
+    <meta property="og:type" content="website" />
 ${linkTags ? `${linkTags}\n` : ""}  </head>
   <body>
     <div id="root"></div>

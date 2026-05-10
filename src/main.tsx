@@ -1,9 +1,4 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
-import { getRouter } from "./router";
+import WorthySite from "./WorthySite";
 
-const router = getRouter();
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />,
-);
+ReactDOM.createRoot(document.getElementById("root")!).render(<WorthySite />);
