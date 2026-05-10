@@ -6,4 +6,12 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+export default defineConfig({
+  // Use our SPA entry (createRoot + WorthySite). The Start default client runs
+  // hydrateRoot(document) + StartClient, which calls hydrate() and requires window.$_TSR — broken on static Netlify.
+  tanstackStart: {
+    client: {
+      entry: "main.tsx",
+    },
+  },
+});
