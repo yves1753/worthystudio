@@ -45,25 +45,18 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  shellComponent: RootShell,
+  // No shellComponent: static hosting mounts the app under <div id="root">. A full
+  // document shell (<html>/<body>) must not be rendered inside that div.
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <HeadContent />
+      <Outlet />
+      <Scripts />
+    </>
+  );
 }
